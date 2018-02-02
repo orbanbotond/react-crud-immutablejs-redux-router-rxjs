@@ -1,0 +1,10 @@
+export const BOOKSHELVES_FETCH_ONE = 'bookshelves/FETCH_ONE';
+export const BOOKSHELVES_FETCH_ONE_SUCCESS = 'bookshelves/FETCH_ONE_SUCCESS';
+export const BOOKSHELVES_FETCH_ALL = 'bookshelves/FETCH_ALL';
+export const BOOKSHELVES_FETCH_ALL_SUCCESS = 'bookshelves/FETCH_ALL_SUCCESS';
+export const BOOKSHELVES_CREATE = 'bookshelves/CREATE';
+export const BOOKSHELVES_CREATE_SUCCESS = 'bookshelves/CREATE_SUCCESS';
+export const BOOKSHELVES_UPDATE = 'bookshelves/UPDATE';
+export const BOOKSHELVES_UPDATE_SUCCESS = 'bookshelves/UPDATE_SUCCESS';
+export const BOOKSHELVES_DELETE = 'bookshelves/DELETE';
+export const BOOKSHELVES_DELETE_SUCCESS = 'bookshelves/DELETE_SUCCESS';
