@@ -13,7 +13,7 @@ class BookshelfEdit extends React.Component {
     this.state = {
       ...this.state,
       bookshelfId: this.props.params.bookshelfId,
-      bookshelf: {title: ''}
+      bookshelf: this.props.bookshelf || {title: ''}
     };
   }
 
@@ -29,8 +29,8 @@ class BookshelfEdit extends React.Component {
     }
   }
 
-  handleChange(field, e) {
-    const bookshelf = Object.assign({}, this.state.bookshelf, {[field]: e.target.value});
+  handleChange(e) {
+    const bookshelf = Object.assign({}, this.state.bookshelf, {title: e.target.value});
     this.setState(Object.assign({}, this.state, {bookshelf}));
   }
 
@@ -44,21 +44,26 @@ class BookshelfEdit extends React.Component {
 
   render() {
     return (
-      <div className="input-group">
-        <input className="input-group-field" type="txt" placeholder="Bookshelf Title"/>
-        <div className="input-group-button">
-          <input type="submit" className="button" value="Add Bookshelf"/>
+      <form className="crud__edit-form" onSubmit={this.handleSubmit.bind(this)} noValidate>
+        <div className="input-group">
+          <input className="input-group-field" type="text" placeholder="Bookshelf Title" value={this.state.bookshelf.title || ''} onChange={this.handleChange.bind(this)} />
+          <div className="input-group-button">
+            <input type="submit" className="button" value={this.state.bookshelfId ? 'Update Bookshelf' : 'Create Bookshelf' }/>
+          </div>
         </div>
-      </div>
+      </form>
     );
   }
 }
 
 export default connect(
-  (state) => ({
-    params: state.bookshelves.get('params'),
-    bookshelves: Object.values(state.bookshelves.get()),
-  }),
+  (state) => {
+    const jsState = state.bookshelves.toJS();
+
+    return {
+      bookshelf: jsState.bookshelf
+    }
+  },
   (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
   })

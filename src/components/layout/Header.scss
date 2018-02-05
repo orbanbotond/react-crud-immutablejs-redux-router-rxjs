@@ -1,0 +1,21 @@
+@import '../../variables';
+
+.app-header {
+  background: $app-header-color;
+  padding: 0 $app-x-margin;
+
+  &__logo {
+      line-height: $app-header-height;
+  }
+
+  &__actions {
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse;
+
+      .button {
+          margin-bottom: 0;
+      }
+  }
+}
+

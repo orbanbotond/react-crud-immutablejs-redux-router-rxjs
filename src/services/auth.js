@@ -3,18 +3,22 @@ import querystring from 'querystring';
 
 import config from '../config';
 
-axios.interceptors.request.use((config) => {
+const mime = 'application/json';
 
-  if (config.method.toLowerCase() === 'get') {
-    const params = querystring.parse(config.url);
-    params.token = localStorage.getItem('auth_token');
-    config.url += '?' + querystring.stringify(params);
+axios.defaults.headers.post['Content-Type'] = mime;
+axios.defaults.headers.put['Content-Type'] = mime;
+axios.defaults.headers.patch['Content-Type'] = mime;
+
+axios.interceptors.request.use((config) => {
+  const token = localStorage.getItem('auth_token');
+
+  if (['get', 'delete'].indexOf(config.method.toLowerCase()) > -1) {
+    config.params = Object.assign({}, config.params, { token });
   } else {
     config.transformRequest = [(data, headers) => {
+      data.token = token;
 
-      data.token = localStorage.getItem('auth_token');
-
-      return data;
+      return JSON.stringify(data);
     }];
   }
 
@@ -35,6 +39,8 @@ export const Auth = {
     }).then((res) => {
       const {authorization_token} = res.data;
       localStorage.setItem('auth_token', authorization_token);
+
+      return res;
     });
   },
   dispose() {

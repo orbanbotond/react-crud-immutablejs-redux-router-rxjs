@@ -33,10 +33,10 @@ export function fetchBookshelves(action$) {
 export function updateBookshelf(action$) {
   return action$.ofType(types.BOOKSHELVES_UPDATE)
     .map(action => action.payload)
-    .switchMap((id, bookshelf) => {
+    .switchMap((bookshelf) => {
       return Observable.merge(
         Observable.fromPromise(
-          axios.put(`${endpoint}/${id}.json`, bookshelf)
+          axios.put(`${endpoint}/${bookshelf.id}.json`, bookshelf)
         ).map(res => actions.updateBookshelfSuccess(res.data)),
         Observable.of(push('/bookshelves'))
       );
@@ -59,9 +59,9 @@ export function createBookshelf(action$) {
 export function deleteBookshelf(action$) {
   return action$.ofType(types.BOOKSHELVES_DELETE)
     .map(action => action.payload)
-    .switchMap((id, bookshelf) => {
+    .switchMap((bookshelf) => {
       return Observable.fromPromise(
-        axios.delete(`${endpoint}/${id}.json`)
+        axios.delete(`${endpoint}/${bookshelf.id}.json`)
       ).map(res => actions.deleteBookshelfSuccess(bookshelf));
     });
 }

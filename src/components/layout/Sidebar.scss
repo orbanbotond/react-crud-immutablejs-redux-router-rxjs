@@ -1,0 +1,63 @@
+@import '../../variables';
+
+
+
+.app-sidebar {
+  width: $app-sidebar-width;
+  height: calc(100vh - #{$app-header-height});
+  background-color: $app-sidebar-color;
+  overflow-x: visible;
+  overflow-y: auto;
+
+  h1 {
+    margin-left: $app-x-margin;
+  }
+
+  .list-group {
+    margin-left: 0;
+    margin-bottom: 8px;
+    border-radius: 0;
+    background: white;
+    box-shadow: none;
+    overflow: hidden;
+    color: black;
+
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .list-group-item {
+    padding: 8px 8px 8px $app-x-margin;
+    border-bottom: 1px solid $light-gray;
+
+    & > :last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    &.active {
+      color: white;
+      background-color: $primary-color;
+      border-color: 1px solid $primary-color;;
+    }
+
+    &:hover, &:focus {
+      background-color: #e6e6e6;
+      &.active {
+        background-color: #1779ba;
+      }
+    }
+
+    &.disabled,
+    &[disabled] {
+      &,
+      &:hover, &:focus {
+        color: $dark-gray;
+        cursor: not-allowed;
+        background-color: white;
+      }
+    }
+  }
+
+}

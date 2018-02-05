@@ -28,16 +28,13 @@ class BookshelvesIndex extends React.Component {
 
   render() {
     const {
-      params,
       bookshelves,
     } = this.props;
 
     return (
-      <div>
-        <div className="row">
-          <div className="col-md-6 text-right">
-            <Link to="/bookshelves/create" className="btn btn-primary">New Bookshelf</Link>
-          </div>
+      <div className="grid-container fluid crud">
+        <div className="crud__actions">
+          <Link to="/bookshelves/create" className="button">New Bookshelf</Link>
         </div>
         {bookshelves.length > 0 &&
         <BookshelfList bookshelves={bookshelves} onDelete={this.deleteBookshelf}/>}
@@ -47,10 +44,13 @@ class BookshelvesIndex extends React.Component {
 }
 
 export default connect(
-  (state) => ({
-    params: state.bookshelves.get('params'),
-    bookshelves: Object.values(state.bookshelves.get()),
-  }),
+  (state) => {
+    const jsState = state.bookshelves.toJS();
+
+    return {
+      bookshelves: jsState.bookshelves
+    }
+  },
   (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
   })

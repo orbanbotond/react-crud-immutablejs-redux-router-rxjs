@@ -1,0 +1,16 @@
+@import '../variables';
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &__form {
+    width: 33vw;
+    max-width: 360px;
+    border: 1px solid $dark-gray;
+    padding: 16px;
+    border-radius: 0;
+  }
+}

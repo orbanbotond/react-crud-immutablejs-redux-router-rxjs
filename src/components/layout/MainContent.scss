@@ -1,0 +1,11 @@
+@import '../../variables';
+
+.app-content {
+  flex: 1;
+  width: calc(100vw - #{$app-sidebar-width});
+  height: calc(100vh - #{$app-header-height});
+  overflow-x: scroll;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+}

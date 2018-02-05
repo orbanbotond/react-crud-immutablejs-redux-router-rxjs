@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import {Auth} from '../services/auth';
+import './Login.scss';
 
 export default class Login extends React.Component {
 
@@ -28,22 +30,24 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)} noValidate>
-        <h4 className="text-center">Log in</h4>
-        <label>User
-          <input type="user" placeholder="User"
-                 value={this.state.user}
-                 onChange={this.handleChange.bind(this, 'user')}
-          />
-        </label>
-        <label>Password
-          <input type="password" placeholder="Password"
-                 value={this.state.password}
-                 onChange={this.handleChange.bind(this, 'password')}
-          />
-        </label>
-        <p><input type="submit" className="button expanded" value="Log in"/></p>
-      </form>
+      <div className="login">
+        <form className="login__form" onSubmit={this.handleSubmit.bind(this)} noValidate>
+          <h4 className="text-center">Log in</h4>
+          <label>User
+            <input type="text" placeholder="User"
+                  value={this.state.user}
+                  onChange={this.handleChange.bind(this, 'user')}
+            />
+          </label>
+          <label>Password
+            <input type="password" placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.handleChange.bind(this, 'password')}
+            />
+          </label>
+          <p><input type="submit" className="button expanded" value="Log in"/></p>
+        </form>
+      </div>
     )
   }
 }
